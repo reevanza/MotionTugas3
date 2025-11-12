@@ -21,7 +21,7 @@ fun Navigation (navController: NavHostController){
 //    val context = LocalContext.current
     NavHost(
         navController = navController,
-        startDestination = HydropoMeRoutes.SplashScreen.routes
+        startDestination = HydropoMeRoutes.Homepage.routes
     ){
         composable(
             HydropoMeRoutes.SplashScreen.routes

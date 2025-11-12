@@ -22,9 +22,9 @@ import com.core.HydropoMeRoutes
 
 fun BottomNavBar(navController: NavController, pages: Int = 0) {
     val menuItems = listOf(
-        Triple(HydropoMeRoutes.Homepage,Icons.Filled.Home, Icons.Outlined.Home) to "Beranda",
-        Triple(HydropoMeRoutes.PantauTanaman, R.drawable.pantautanamanhijau, R.drawable.pantautanamanabu)to "Pantau Tanaman",
-        Triple(HydropoMeRoutes.MarketPlace, R.drawable.marketplacehijau, R.drawable.marketplaceabu) to "Marketplace",
+        Triple(HydropoMeRoutes.Homepage,R.drawable.home_hijau, R.drawable.home_abu) to "Beranda",
+        Triple(HydropoMeRoutes.PantauTanaman, R.drawable.pohon_hijau, R.drawable.pohon_abu)to "Pantau Tanaman",
+        Triple(HydropoMeRoutes.MarketPlace, R.drawable.bag_hijau, R.drawable.bag_abu) to "Marketplace",
         Triple(HydropoMeRoutes.Profil, R.drawable.akunhijau, R.drawable.akunabu) to "Profil"
 
 

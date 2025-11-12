@@ -2,7 +2,6 @@ package com.example.hydropome.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import androidx.navigation.Navigation
 import com.core.HydropoMeRoutes
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,7 +9,8 @@ import com.example.hydropome.ui.screens.Homepage
 import com.example.hydropome.ui.screens.Login
 import com.example.hydropome.ui.screens.MarketPlace
 import com.example.hydropome.ui.screens.SplashScreen
-import com.example.hydropome.ui.screens.Onboard
+import com.example.hydropome.ui.screens.Onboard.Onboard1
+import com.example.hydropome.ui.screens.Onboard.Onboard2
 import com.example.hydropome.ui.screens.PantauTanaman
 import com.example.hydropome.ui.screens.Profil
 import com.example.hydropome.ui.screens.Register
@@ -21,7 +21,7 @@ fun Navigation (navController: NavHostController){
 //    val context = LocalContext.current
     NavHost(
         navController = navController,
-        startDestination = HydropoMeRoutes.Homepage.routes
+        startDestination = HydropoMeRoutes.SplashScreen.routes
     ){
         composable(
             HydropoMeRoutes.SplashScreen.routes
@@ -29,9 +29,14 @@ fun Navigation (navController: NavHostController){
             SplashScreen(navController)
         }
         composable(
-            HydropoMeRoutes.Onboard.routes
+            HydropoMeRoutes.Onboard1.routes
         ){
-            Onboard(navController)
+            Onboard1(navController)
+        }
+        composable(
+            HydropoMeRoutes.Onboard2.routes
+        ){
+            Onboard2(navController)
         }
         composable(
             HydropoMeRoutes.Login.routes

@@ -13,7 +13,7 @@ import com.example.hydropome.ui.screens.Onboard.Onboard1
 import com.example.hydropome.ui.screens.Onboard.Onboard2
 import com.example.hydropome.ui.screens.PantauTanaman
 import com.example.hydropome.ui.screens.Profil
-import com.example.hydropome.ui.screens.Register
+import com.example.hydropome.ui.screens.Register.Register
 
 
 @Composable

@@ -14,8 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,15 +24,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.hydropome.R
+
 @Composable
 
 fun Onboard1(navController: NavHostController) {
@@ -41,7 +43,30 @@ fun Onboard1(navController: NavHostController) {
             .background(Color(0xFF0D3B32)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CurvedImage(imageRes = R.drawable.onboard1)
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            CurvedImage(imageRes = R.drawable.onboard1)
+
+            Button(
+                onClick = {
+                    navController.navigate("Register")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEFF7F3)),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(horizontal = 36.dp, vertical = 40.dp)
+                    .width(100.dp)
+                    .height(50.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Lewati",
+                    color = Color(0xFF009688),
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(80.dp))
 
@@ -112,4 +137,10 @@ fun Onboard1(navController: NavHostController) {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Onboard1Preview() {
+    Onboard1(navController = rememberNavController())
 }

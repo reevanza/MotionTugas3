@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +43,30 @@ fun Onboard2(navController: NavHostController) {
             .background(Color(0xFF0D3B32)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CurvedImage(imageRes = R.drawable.onboard2)
+        Box(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            CurvedImage(imageRes = R.drawable.onboard1)
+
+            Button(
+                onClick = {
+                    navController.navigate("Register")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEFF7F3)),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(horizontal = 36.dp, vertical = 40.dp)
+                    .width(100.dp)
+                    .height(50.dp),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Text(
+                    text = "Lewati",
+                    color = Color(0xFF009688),
+                    fontWeight = FontWeight.Medium
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(80.dp))
 

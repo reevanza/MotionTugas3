@@ -2,7 +2,9 @@ package com.example.hydropome.ui.screens.Register
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,7 +33,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.colorspace.WhitePoint
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -52,26 +57,62 @@ import com.example.hydropome.R
 @Composable
 fun Register(navController: NavController) {
     val gray = Color(0xFFE8ECF4)
+    val green = Color(0xFF179778)
     var name by remember {mutableStateOf("")}
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var verifyPass by remember { mutableStateOf( "") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     val context = LocalContext.current
 
-    Scaffold { paddingValue ->
+    Scaffold (
+        containerColor = Color.White
+    ){ paddingValue ->
         Box(
             modifier = Modifier
                 .padding(paddingValue)
-                .padding(24.dp),
+                .padding(top = 52.dp, start = 20.dp, end = 20.dp)
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(space = 24.dp, Alignment.CenterVertically),
+                verticalArrangement = Arrangement.spacedBy(space = 24.dp, Alignment.Top),
                 horizontalAlignment = Alignment.Start,
                 modifier = Modifier
                     .fillMaxSize()
             ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .border(
+                                width = 1.dp,
+                                color = Color(0xFFE2E8F0),
+                                shape = RoundedCornerShape(12.dp)
+                            )
+                            .clip(RoundedCornerShape(24.dp))
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ) {
+                                navController.navigate("Login")
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.panahkiri),
+                            contentDescription = "Icon Panah kiri",
+                            tint = Color(0xFF1F2937),
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
+                }
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -79,14 +120,14 @@ fun Register(navController: NavController) {
                     Text(
                         text = "Daftar Akun dan Mulai Bertani Hidroponik! \uD83C\uDF3F",
                         style = TextStyle(
-                            fontSize = 24.sp,
+                            fontSize = 30.sp,
                             fontWeight = FontWeight(700),
                         )
                     )
                 }
 
                 Spacer(modifier = Modifier
-                    .height(40.dp))
+                    .height(20.dp))
 
                 Column(
                 ) {
@@ -97,26 +138,28 @@ fun Register(navController: NavController) {
                             fontWeight = FontWeight(700),
                         )
                     )
+                    Spacer(modifier = Modifier
+                        .height(8.dp))
 
                     OutlinedTextField(
                         value = name,
                         onValueChange = { name = it },
                         placeholder = { Text("Masukkan Nama Lengkap") },
                         shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFFF7F8F9)
-                            ),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = gray,
-                            unfocusedBorderColor = gray,
-                            cursorColor = gray
+                            focusedBorderColor = green,
+                            unfocusedBorderColor = green,
+                            cursorColor = green,
+                            focusedContainerColor = Color(0xFFF7F8F9),
+                            unfocusedContainerColor = Color(0xFFF7F8F9)
                         ),
+                        modifier = Modifier.fillMaxWidth(),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                     )
 
                     Spacer(modifier = Modifier
                         .height(20.dp))
+
                     Text(
                         text = "Email",
                         style = TextStyle(
@@ -124,21 +167,26 @@ fun Register(navController: NavController) {
                             fontWeight = FontWeight(700),
                         )
                     )
+
+                    Spacer(modifier = Modifier
+                        .height(8.dp))
+
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
                         placeholder = { Text("Masukkan Email") },
                         shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFFF7F8F9)
-                            ),
+                        modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = gray,
-                            unfocusedBorderColor = gray,
-                            cursorColor = gray
+                            focusedBorderColor = Color(0xFF179778),
+                            unfocusedBorderColor = Color(0xFF179778),
+                            cursorColor = Color(0xFF179778),
+                            focusedContainerColor = Color(0xFFF7F8F9),
+                            unfocusedContainerColor = Color(0xFFF7F8F9)
                         ),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+                        keyboardOptions = KeyboardOptions.Default.copy(
+                            keyboardType = KeyboardType.Email
+                        )
                     )
 
                     Spacer(modifier = Modifier
@@ -152,38 +200,39 @@ fun Register(navController: NavController) {
                         )
                     )
 
+                    Spacer(modifier = Modifier
+                        .height(8.dp))
+
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
                         placeholder = { Text("Masukkan Password") },
-                        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        visualTransformation = if (passwordVisible)
+                            VisualTransformation.None else PasswordVisualTransformation(),
                         trailingIcon = {
-                            val image = if (passwordVisible)
-                                R.drawable.rounded_visibility_24
-                            else
-                                R.drawable.rounded_visibility_off_24
-
-                            val description = if (passwordVisible) "Hide password" else "Show password"
-
                             IconButton(onClick = { passwordVisible = !passwordVisible }) {
                                 Icon(
-                                    painter = painterResource(id = image),
-                                    contentDescription = description
+                                    painter = painterResource(
+                                        id = if (passwordVisible)
+                                            R.drawable.rounded_visibility_24
+                                        else
+                                            R.drawable.rounded_visibility_off_24
+                                    ),
+                                    contentDescription = if (passwordVisible) "Hide password" else "Show password"
                                 )
                             }
                         },
                         shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFFF7F8F9)
-                            ),
+                        modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = gray,
-                            unfocusedBorderColor = gray,
-                            cursorColor = gray
-                        ),
-
+                            focusedBorderColor = Color(0xFF179778),
+                            unfocusedBorderColor = Color(0xFF179778),
+                            cursorColor = Color(0xFF179778),
+                            focusedContainerColor = Color(0xFFF7F8F9),
+                            unfocusedContainerColor = Color(0xFFF7F8F9)
+                        )
                     )
+
 
                     Spacer(modifier = Modifier
                         .height(20.dp))
@@ -195,38 +244,39 @@ fun Register(navController: NavController) {
                         )
                     )
 
+                    Spacer(modifier = Modifier
+                        .height(8.dp))
+
                     OutlinedTextField(
                         value = verifyPass,
                         onValueChange = { verifyPass = it },
                         placeholder = { Text("Masukkan Password") },
-                        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        visualTransformation = if (confirmPasswordVisible)
+                            VisualTransformation.None else PasswordVisualTransformation(),
                         trailingIcon = {
-                            val image = if (passwordVisible)
-                                R.drawable.rounded_visibility_24
-                            else
-                                R.drawable.rounded_visibility_off_24
-
-                            val description = if (passwordVisible) "Hide password" else "Show password"
-
-                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                            IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
                                 Icon(
-                                    painter = painterResource(id = image),
-                                    contentDescription = description
+                                    painter = painterResource(
+                                        id = if (confirmPasswordVisible)
+                                            R.drawable.rounded_visibility_24
+                                        else
+                                            R.drawable.rounded_visibility_off_24
+                                    ),
+                                    contentDescription = if (confirmPasswordVisible) "Hide password" else "Show password"
                                 )
                             }
                         },
                         shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFFF7F8F9)
-                            ),
+                        modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = gray,
-                            unfocusedBorderColor = gray,
-                            cursorColor = gray
-                        ),
-
+                            focusedBorderColor = Color(0xFF179778),
+                            unfocusedBorderColor = Color(0xFF179778),
+                            cursorColor = Color(0xFF179778),
+                            focusedContainerColor = Color(0xFFF7F8F9),
+                            unfocusedContainerColor = Color(0xFFF7F8F9)
+                        )
                     )
+
 
                     Spacer(modifier = Modifier
                         .height(16.dp)
@@ -235,24 +285,35 @@ fun Register(navController: NavController) {
                     Button(
 
                         onClick = {
-                            if (password == verifyPass){
-                                if (password.isNotEmpty()){
-                                    navController.navigate(HydropoMeRoutes.Login.routes)
-                                } else {
-                                    errorMessage = "Password tidak boleh kosong"
-                                    Toast.makeText(
-                                        context,
-                                        "Password tidak boleh kosong",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                            when {
+                                name.isEmpty() -> {
+                                    errorMessage = "Nama tidak boleh kosong"
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                                 }
-                            } else {
-                                errorMessage = "Password dan konfirmasi tidak cocok"
-                                Toast.makeText(
-                                    context,
-                                    "Password dan konfirmasi tidak cocok",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+
+                                email.isEmpty() -> {
+                                    errorMessage = "Email tidak boleh kosong"
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+
+                                password.isEmpty() -> {
+                                    errorMessage = "Password tidak boleh kosong"
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+
+                                verifyPass.isEmpty() -> {
+                                    errorMessage = "Konfirmasi password tidak boleh kosong"
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+
+                                password != verifyPass -> {
+                                    errorMessage = "Password dan konfirmasi tidak cocok"
+                                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+
+                                else -> {
+                                    navController.navigate(HydropoMeRoutes.Login.routes)
+                                }
                             }
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF179778)),
@@ -289,7 +350,7 @@ fun Register(navController: NavController) {
                             .width(4.dp)
                         )
                         Text(
-                            text = "Masuk!",
+                            text = "Masuk",
                             color = Color(0xFF179778),
                             style = TextStyle(
                                 fontWeight = FontWeight(600),

@@ -123,7 +123,7 @@ fun Onboard2(navController: NavHostController) {
                         .clip(RoundedCornerShape(20.dp))
                         .background(Color.White.copy(alpha = 0.15f))
                         .clickable {
-                            navController.navigate("onboard1")
+                            navController.navigate("Onboard1")
                         },
                     contentAlignment = Alignment.Center
                 ) {

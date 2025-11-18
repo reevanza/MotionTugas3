@@ -23,7 +23,7 @@ import com.example.hydropome.R
 import com.example.hydropome.ui.screens.Homepage
 import com.example.hydropome.ui.screens.MarketPlace
 import com.example.hydropome.ui.screens.PantauTanaman
-import com.example.hydropome.ui.screens.Profil
+import com.example.hydropome.ui.screens.Profil.Profil
 
 @Composable
 fun MainScreen(

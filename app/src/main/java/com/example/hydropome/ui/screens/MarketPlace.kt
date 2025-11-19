@@ -1,6 +1,7 @@
 package com.example.hydropome.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -12,13 +13,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.hydropome.ui.navigation.BottomNavBar
 
 @Composable
 
-fun MarketPlace(navController: NavHostController) {
+fun MarketPlace(
+    username: String,
+    innerPadding: PaddingValues = PaddingValues()
+) {
     Scaffold(
-        bottomBar = { BottomNavBar(navController = navController, pages = 2) }
     ){ paddingValues ->
         Column(
             modifier = Modifier
@@ -31,10 +33,4 @@ fun MarketPlace(navController: NavHostController) {
         }
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MarketPlacePreview() {
-    MarketPlace(navController = rememberNavController())
 }

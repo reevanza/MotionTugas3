@@ -45,7 +45,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.fillMaxSize
 import com.example.hydropome.ui.button.MulaiTanamButton
-
+//added laman tanaman
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LamanTanaman(navController: NavHostController){

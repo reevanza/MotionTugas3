@@ -1,4 +1,4 @@
-package com.example.hydropome.ui.navigation
+package com.example.hydropome.ui.screens.navigation
 
 import kotlinx.serialization.Serializable
 
@@ -27,6 +27,9 @@ object Profil
 
 @Serializable
 object SplashScreen
+
+@Serializable
+object Personalisasi1
 
 
 

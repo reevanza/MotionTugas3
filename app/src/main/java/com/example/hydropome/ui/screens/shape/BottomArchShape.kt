@@ -1,4 +1,4 @@
-package com.example.hydropome.ui.common.shape
+package com.example.hydropome.ui.screens.shape
 
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path

@@ -1,4 +1,4 @@
-package com.example.hydropome.ui.screens.Profil
+package com.example.hydropome.ui.screens.personalisasi
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,7 +15,7 @@ import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.ui.draw.clip
 
 @Composable
-fun CurveHeader() {
+fun PersonalisasiCurveHeader() {
     val curveShape = GenericShape { size, _ ->
         val w = size.width
         val h = size.height
@@ -27,7 +27,7 @@ fun CurveHeader() {
             w * 0.5f,
             h * 0.8f,
             w,
-            h * 0.55f
+            h * 0.85f
         )
 
         lineTo(w, 0f)

@@ -1,4 +1,4 @@
-package com.example.hydropome.ui.navigation
+package com.example.hydropome.ui.screens.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.hydropome.R
-import com.example.hydropome.ui.screens.Homepage
-import com.example.hydropome.ui.screens.MarketPlace
-import com.example.hydropome.ui.screens.PantauTanaman
+import com.example.hydropome.ui.screens.homepage.Homepage
+import com.example.hydropome.ui.screens.marketplace.MarketPlace
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
 
 @Composable
@@ -80,7 +80,7 @@ fun MainScreen(
             )
 
             1 -> PantauTanaman(
-                username = username,
+                navController = navController,
                 innerPadding = innerPadding
             )
 

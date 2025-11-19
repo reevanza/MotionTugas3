@@ -1,4 +1,4 @@
-package com.example.hydropome.ui.screens
+package com.example.hydropome.ui.screens.splashscreen
 
 import androidx.compose.foundation.Image
 import com.example.hydropome.R
@@ -20,12 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import kotlinx.coroutines.delay
 
 @Composable
 
 fun SplashScreen(navController: NavHostController) {
     LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(3000)
+        delay(3000)
         navController.navigate("onboard1") {
             popUpTo("splash") { inclusive = true }
         }

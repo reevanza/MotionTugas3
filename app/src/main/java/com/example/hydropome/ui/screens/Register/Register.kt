@@ -50,8 +50,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.core.HydropoMeRoutes
 import com.example.hydropome.R
+import com.example.hydropome.ui.navigation.Login
+import com.example.hydropome.ui.screens.Login
 
 
 @Composable
@@ -312,7 +313,7 @@ fun Register(navController: NavController) {
                                 }
 
                                 else -> {
-                                    navController.navigate(HydropoMeRoutes.Login.routes)
+                                    navController.navigate(Login)
                                 }
                             }
                         },
@@ -356,7 +357,7 @@ fun Register(navController: NavController) {
                                 fontWeight = FontWeight(600),
                             ),
                             modifier = Modifier
-                                .clickable(onClick = { navController.navigate(HydropoMeRoutes.Login.routes) })
+                                .clickable(onClick = { navController.navigate(Login) })
 
                         )
                     }

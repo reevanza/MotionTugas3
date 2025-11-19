@@ -59,7 +59,8 @@ fun Login(navController: NavHostController) {
             TopAppBar(
                 title = { /* Tidak ada judul */ },
                 navigationIcon = {
-                    BackButton()
+                    BackButton(
+                    )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
@@ -112,7 +113,6 @@ fun Login(navController: NavHostController) {
                 placeholder  = {Text(text="Masukkan Email",
                     fontSize = 12.sp,)},
                 colors = OutlinedTextFieldDefaults.colors(
-                    // --- MASALAH 2 DIPERBAIKI ---
                     focusedTextColor = Color.Black,
                     unfocusedTextColor = Color.Black,
 
@@ -180,17 +180,17 @@ fun Login(navController: NavHostController) {
             )
 
             Spacer(modifier = Modifier.height(40.dp))
-            Row(
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalArrangement = Arrangement.Center,
 
             ){
                 LoginButton(
+//                    modifier = Modifier
+//                        .align(Alignment.CenterVertically)
 
                 )
-                Text(
 
-                )
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.hydropome.ui.button
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
@@ -18,20 +19,25 @@ import com.example.hydropome.R
 
 @Composable
 @Preview
-fun BackButton(){
+fun BackButton(
+    modifier: Modifier = Modifier
+
+){
     val myShape = RoundedCornerShape(12.dp)
     Box(
-        modifier = Modifier
+        modifier = modifier
             .width(40.dp)
             .height(40.dp)
             .clip(RoundedCornerShape(12.dp))
-            .border(width =1.dp, color= Color(0xFFE8ECF4), shape = myShape),
+            .background(Color.White, shape = myShape)
+            .border(width =2.dp, color= Color(0xFFE8ECF4), shape = myShape),
         contentAlignment = Alignment.Center
 
 
     ){
         Icon(
             painter = painterResource(R.drawable.arrow_left),
+
             contentDescription = "tombol kembali"
         )
     }

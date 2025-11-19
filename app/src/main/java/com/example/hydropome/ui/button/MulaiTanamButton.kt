@@ -1,4 +1,5 @@
-package com.example.hydropome.ui.login
+package com.example.hydropome.ui.button
+
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,7 +20,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 @Preview
-fun LoginButton(
+fun MulaiTanamButton(
     modifier: Modifier = Modifier
 ){
 
@@ -33,7 +34,7 @@ fun LoginButton(
     ) {
         Spacer(Modifier.height(10.dp))
         Text(
-            text = "Masuk",
+            text = "Mulai Tanam dan Pantau",
             color  = Color.White,
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold

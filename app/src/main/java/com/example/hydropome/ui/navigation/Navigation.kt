@@ -6,7 +6,8 @@ import com.core.HydropoMeRoutes
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.hydropome.ui.screens.Homepage
-import com.example.hydropome.ui.screens.Login
+import com.example.hydropome.ui.login.Login
+import com.example.hydropome.ui.screens.LamanTanaman
 import com.example.hydropome.ui.screens.MarketPlace
 import com.example.hydropome.ui.screens.SplashScreen
 import com.example.hydropome.ui.screens.Onboard.Onboard1
@@ -16,12 +17,13 @@ import com.example.hydropome.ui.screens.Profil
 import com.example.hydropome.ui.screens.Register.Register
 
 
+
 @Composable
 fun Navigation (navController: NavHostController){
 //    val context = LocalContext.current
     NavHost(
         navController = navController,
-        startDestination = HydropoMeRoutes.Register.routes
+        startDestination = HydropoMeRoutes.SplashScreen.routes
     ){
         composable(
             HydropoMeRoutes.SplashScreen.routes
@@ -53,6 +55,11 @@ fun Navigation (navController: NavHostController){
         ){
             Homepage(navController)
         }
+//        composable(
+//            HydropoMeRoutes.LamanTanaman.routes
+//        ){
+//            LamanTanaman(navController)
+//        }
         composable(
             HydropoMeRoutes.PantauTanaman.routes
         ){

@@ -2,6 +2,7 @@ package com.example.hydropome.ui.screens.Profil
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.hydropome.R
 import java.time.format.TextStyle
 
@@ -47,7 +49,8 @@ import java.time.format.TextStyle
 @Composable
 fun Profil(
     username: String,
-    innerPadding: PaddingValues = PaddingValues()
+    innerPadding: PaddingValues = PaddingValues(),
+    navController: NavController
 ) {
     Scaffold (
         contentWindowInsets = WindowInsets(0.dp)
@@ -277,6 +280,9 @@ fun Profil(
                             .clip(RoundedCornerShape(12.dp))
                             .background(Color.White)
                             .padding(24.dp)
+                            .clickable{
+                                navController.navigate("Onboard1")
+                            }
                     ) {
                         Row (
                             modifier = Modifier.fillMaxWidth(),
@@ -314,7 +320,7 @@ fun Profil(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.panahkanan),
-                                    contentDescription = "Personalisasi",
+                                    contentDescription = "Logout",
                                     tint = Color(color = 0xFFFC4343),
                                     modifier = Modifier
                                         .size(30.dp)

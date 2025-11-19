@@ -73,6 +73,7 @@ fun AppNavHost() {
         composable("Profil") {
             Profil(
                 username = "",
+                navController = navController
             )
         }
 

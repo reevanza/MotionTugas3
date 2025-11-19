@@ -91,7 +91,8 @@ fun MainScreen(
 
             3 -> Profil(
                 username = username,
-                innerPadding = innerPadding
+                innerPadding = innerPadding,
+                navController = navController
             )
         }
 

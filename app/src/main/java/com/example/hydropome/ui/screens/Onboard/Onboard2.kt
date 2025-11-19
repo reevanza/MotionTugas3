@@ -46,7 +46,7 @@ fun Onboard2(navController: NavHostController) {
         Box(
             modifier = Modifier.fillMaxWidth()
         ) {
-            CurvedImage(imageRes = R.drawable.onboard1)
+            CurvedImage(imageRes = R.drawable.onboard2)
 
             Button(
                 onClick = {

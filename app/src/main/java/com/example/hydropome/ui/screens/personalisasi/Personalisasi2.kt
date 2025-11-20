@@ -478,9 +478,6 @@ fun Personalisasi2(navController: NavHostController){
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(Color.White)
                                 .padding(24.dp)
-                                .clickable{
-                                    navController.navigate("d1")
-                                }
                         ) {
                             Column {
                                 Row (

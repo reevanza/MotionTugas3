@@ -87,7 +87,7 @@ fun Personalisasi3(navController: NavHostController){
                             )
                         }
 
-                        Spacer(modifier = Modifier.width(190.dp))
+                        Spacer(modifier = Modifier.weight(1f))
 
                         Text(
                             text = "3/3",

@@ -188,7 +188,7 @@ fun Login(navController: NavHostController) {
                         .clip(RoundedCornerShape(12.dp))
                         .background(Color(0xFF179778))
                         .clickable{
-                            navController.navigate("Main")
+                            navController.navigate("Personalisasi1")
                         },
                     contentAlignment = Alignment.Center
                 ) {

@@ -221,6 +221,9 @@ fun Profil(
                             .clip(RoundedCornerShape(12.dp))
                             .background(Color.White)
                             .padding(24.dp)
+                            .clickable{
+                                navController.navigate("Personalisasi1")
+                            }
                     ) {
                         Row (
                             modifier = Modifier.fillMaxWidth(),

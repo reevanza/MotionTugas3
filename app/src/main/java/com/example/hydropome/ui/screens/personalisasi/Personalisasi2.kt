@@ -42,7 +42,7 @@ import com.example.hydropome.R
 import androidx.compose.ui.Alignment
 
 @Composable
-fun Personalisasi1(navController: NavHostController){
+fun Personalisasi2(navController: NavHostController){
     Scaffold (
         contentWindowInsets = WindowInsets(0.dp)
     ) { paddingValues ->
@@ -73,7 +73,7 @@ fun Personalisasi1(navController: NavHostController){
                                 .clip(RoundedCornerShape(8.dp))
                                 .background(Color.White.copy(alpha = 0.15f))
                                 .clickable {
-                                    navController.navigate("Login")
+                                    navController.navigate("Personalisasi1")
                                 },
                             contentAlignment = Alignment.Center
                         ) {
@@ -88,7 +88,7 @@ fun Personalisasi1(navController: NavHostController){
                         Spacer(modifier = Modifier.width(190.dp))
 
                         Text(
-                            text = "1/3",
+                            text = "2/3",
                             fontWeight = FontWeight.Medium,
                             fontSize = 16.sp,
                             color = Color.White,
@@ -127,22 +127,12 @@ fun Personalisasi1(navController: NavHostController){
 
                     }
 
-
-
-
-                    Spacer(modifier = Modifier.height(20.dp))
-                    Text(
-                        text = "Yuk Jawab Biar HydropoMe Tahu Kebutuhanmu \uD83D\uDC9A",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontSize = 24.sp
-                    )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(35.dp))
                     Column {
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(280.dp)
+                                .height(340.dp)
                                 .padding(6.dp)
                                 .shadow(
                                     elevation = 10.dp,
@@ -165,7 +155,7 @@ fun Personalisasi1(navController: NavHostController){
                                             .background(Color(color = 0xFFE8F5F2))
                                     ){
                                         Icon(
-                                            painter = painterResource(com.example.hydropome.R.drawable.pohon_hijau),
+                                            painter = painterResource(R.drawable.pohon_hijau),
                                             contentDescription = "Personalisasi",
                                             tint = Color(color = 0xFF179778),
                                             modifier = Modifier
@@ -177,7 +167,7 @@ fun Personalisasi1(navController: NavHostController){
                                     Spacer(Modifier.width(8.dp))
 
                                     Text(
-                                        text = "Apakah kamu pernah mencoba menanam hidroponik sebelumnya?",
+                                        text = "Jenis tanaman apa saja yang ingin kamu tanam?",
                                         color = Color.Black,
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 14.sp,
@@ -205,15 +195,15 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
-                                                contentDescription = "RadioButton",
+                                                painter = painterResource(R.drawable.boxbutton),
+                                                contentDescription = "boxButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
                                                     .size(25.dp)
                                             )
 
                                             Text(
-                                                text = "Belum pernah"
+                                                text = "Sayuran daun (misalnya selada, bayam)"
                                             )
                                         }
 
@@ -235,15 +225,15 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
-                                                contentDescription = "RadioButton",
+                                                painter = painterResource(R.drawable.boxbutton),
+                                                contentDescription = "boxButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
                                                     .size(25.dp)
                                             )
 
                                             Text(
-                                                text = "Pernah, tapi masih pemula"
+                                                text = "Buah (misalnya tomat, stroberi)"
                                             )
                                         }
 
@@ -253,7 +243,6 @@ fun Personalisasi1(navController: NavHostController){
 
                                     Box(modifier = Modifier
                                         .fillMaxWidth()
-                                        .fillMaxHeight()
                                         .clip(RoundedCornerShape(20.dp))
                                     ){
                                         Row (
@@ -266,15 +255,46 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
-                                                contentDescription = "RadioButton",
+                                                painter = painterResource(R.drawable.boxbutton),
+                                                contentDescription = "boxButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
                                                     .size(25.dp)
                                             )
 
                                             Text(
-                                                text = "Sudah cukup berpengalaman"
+                                                text = "Tanaman herbal"
+                                            )
+                                        }
+
+                                    }
+
+
+                                    Spacer(Modifier.height(8.dp))
+
+                                    Box(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(20.dp))
+                                    ){
+                                        Row (
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(Color(0xFFF7F8F9)),
+
+                                            horizontalArrangement = Arrangement.Start,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+
+                                            Icon(
+                                                painter = painterResource(R.drawable.boxbutton),
+                                                contentDescription = "boxButton",
+                                                modifier = Modifier
+                                                    .padding(10.dp)
+                                                    .size(25.dp)
+                                            )
+
+                                            Text(
+                                                text = "Belum tahu / ingin rekomendasi"
                                             )
                                         }
 
@@ -295,7 +315,7 @@ fun Personalisasi1(navController: NavHostController){
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(320.dp)
+                                .height(280.dp)
                                 .padding(horizontal = 6.dp)
                                 .shadow(
                                     elevation = 10.dp,
@@ -305,6 +325,7 @@ fun Personalisasi1(navController: NavHostController){
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(Color.White)
                                 .padding(24.dp)
+
                         ) {
                             Column {
                                 Row (
@@ -318,7 +339,7 @@ fun Personalisasi1(navController: NavHostController){
                                             .background(Color(color = 0xFFE8F5F2))
                                     ){
                                         Icon(
-                                            painter = painterResource(com.example.hydropome.R.drawable.pohon_hijau),
+                                            painter = painterResource(R.drawable.pohon_hijau),
                                             contentDescription = "Personalisasi",
                                             tint = Color(color = 0xFF179778),
                                             modifier = Modifier
@@ -330,7 +351,7 @@ fun Personalisasi1(navController: NavHostController){
                                     Spacer(Modifier.width(8.dp))
 
                                     Text(
-                                        text = "Apa tujuan utama kamu menggunakan aplikasi HydropoMe?",
+                                        text = "Berapa  waktu yang bisa diluangkan per hari untuk merawat tanaman?",
                                         color = Color.Black,
                                         fontWeight = FontWeight.SemiBold,
                                         fontSize = 14.sp,
@@ -358,7 +379,7 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
+                                                painter = painterResource(R.drawable.radiobutton),
                                                 contentDescription = "RadioButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
@@ -366,7 +387,7 @@ fun Personalisasi1(navController: NavHostController){
                                             )
 
                                             Text(
-                                                text = "Belajar hidroponik dari awal"
+                                                text = "< 10 menit"
                                             )
                                         }
 
@@ -388,7 +409,7 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
+                                                painter = painterResource(R.drawable.radiobutton),
                                                 contentDescription = "RadioButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
@@ -396,7 +417,7 @@ fun Personalisasi1(navController: NavHostController){
                                             )
 
                                             Text(
-                                                text = "Merawat tanaman hidroponik yang sudah ada"
+                                                text = "10–30 menit"
                                             )
                                         }
 
@@ -418,7 +439,7 @@ fun Personalisasi1(navController: NavHostController){
                                         ) {
 
                                             Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
+                                                painter = painterResource(R.drawable.radiobutton),
                                                 contentDescription = "RadioButton",
                                                 modifier = Modifier
                                                     .padding(10.dp)
@@ -426,50 +447,177 @@ fun Personalisasi1(navController: NavHostController){
                                             )
 
                                             Text(
-                                                text = "Membeli peralatan dan perlengkapan hidroponik"
+                                                text = "> 30 menit"
                                             )
                                         }
 
                                     }
-
-                                    Spacer(Modifier.height(8.dp))
-
-                                    Box(modifier = Modifier
-                                        .fillMaxWidth()
-                                        .fillMaxHeight()
-                                        .clip(RoundedCornerShape(20.dp))
-                                    ){
-                                        Row (
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .background(Color(0xFFF7F8F9)),
-
-                                            horizontalArrangement = Arrangement.Start,
-                                            verticalAlignment = Alignment.CenterVertically
-                                        ) {
-
-                                            Icon(
-                                                painter = painterResource(com.example.hydropome.R.drawable.radiobutton),
-                                                contentDescription = "RadioButton",
-                                                modifier = Modifier
-                                                    .padding(10.dp)
-                                                    .size(25.dp)
-                                            )
-
-                                            Text(
-                                                text = "Menjual hasil panen"
-                                            )
-                                        }
-
-                                    }
-
 
                                 }
                             }
 
                         }
 
+
+
                     }
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Column {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(280.dp)
+                                .padding(horizontal = 6.dp)
+                                .shadow(
+                                    elevation = 10.dp,
+                                    shape = RoundedCornerShape(10.dp),
+                                    clip = false
+                                )
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(Color.White)
+                                .padding(24.dp)
+                                .clickable{
+                                    navController.navigate("d1")
+                                }
+                        ) {
+                            Column {
+                                Row (
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Start,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .clip(RoundedCornerShape(140.dp))
+                                            .background(Color(color = 0xFFE8F5F2))
+                                    ){
+                                        Icon(
+                                            painter = painterResource(R.drawable.pohon_hijau),
+                                            contentDescription = "Personalisasi",
+                                            tint = Color(color = 0xFF179778),
+                                            modifier = Modifier
+                                                .padding(10.dp)
+                                                .size(25.dp)
+                                        )
+                                    }
+
+                                    Spacer(Modifier.width(8.dp))
+
+                                    Text(
+                                        text = "Di mana kamu akan menanam tanaman hidroponik?",
+                                        color = Color.Black,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontSize = 14.sp,
+                                    )
+                                }
+
+                                Column(
+                                    modifier = Modifier
+                                        .padding(top = 20.dp)
+                                ) {
+                                    Box(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(20.dp))
+                                    ){
+                                        Column {
+
+                                        }
+                                        Row (
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(Color(0xFFF7F8F9)),
+
+                                            horizontalArrangement = Arrangement.Start,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+
+                                            Icon(
+                                                painter = painterResource(R.drawable.radiobutton),
+                                                contentDescription = "RadioButton",
+                                                modifier = Modifier
+                                                    .padding(10.dp)
+                                                    .size(25.dp)
+                                            )
+
+                                            Text(
+                                                text = "Dalam ruangan"
+                                            )
+                                        }
+
+                                    }
+
+                                    Spacer(Modifier.height(8.dp))
+
+                                    Box(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(20.dp))
+                                    ){
+                                        Row (
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(Color(0xFFF7F8F9)),
+
+                                            horizontalArrangement = Arrangement.Start,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+
+                                            Icon(
+                                                painter = painterResource(R.drawable.radiobutton),
+                                                contentDescription = "RadioButton",
+                                                modifier = Modifier
+                                                    .padding(10.dp)
+                                                    .size(25.dp)
+                                            )
+
+                                            Text(
+                                                text = "Luar ruangan"
+                                            )
+                                        }
+
+                                    }
+
+                                    Spacer(Modifier.height(8.dp))
+
+                                    Box(modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(20.dp))
+                                    ){
+                                        Row (
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .background(Color(0xFFF7F8F9)),
+
+                                            horizontalArrangement = Arrangement.Start,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+
+                                            Icon(
+                                                painter = painterResource(R.drawable.radiobutton),
+                                                contentDescription = "RadioButton",
+                                                modifier = Modifier
+                                                    .padding(10.dp)
+                                                    .size(25.dp)
+                                            )
+
+                                            Text(
+                                                text = "Balkon atau teras"
+                                            )
+                                        }
+
+                                    }
+
+                                }
+                            }
+
+                        }
+
+
+
+                    }
+
+
                 }
             }
 
@@ -483,7 +631,7 @@ fun Personalisasi1(navController: NavHostController){
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color(0xFF179778))
                     .clickable{
-                        navController.navigate("Personalisasi2")
+                        navController.navigate("Personalisasi3")
                     },
                 contentAlignment = Alignment.Center
             ) {
@@ -506,6 +654,6 @@ fun Personalisasi1(navController: NavHostController){
 
 @Preview(showBackground = true)
 @Composable
-fun Personalisasi1Preview() {
-    Personalisasi1(navController = rememberNavController())
+fun Personalisasi2Preview() {
+    Personalisasi2(navController = rememberNavController())
 }

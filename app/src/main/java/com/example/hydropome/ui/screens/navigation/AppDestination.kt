@@ -31,6 +31,11 @@ object SplashScreen
 @Serializable
 object Personalisasi1
 
+@Serializable
+object Personalisasi2
+
+@Serializable
+object Personalisasi3
 
 
 @Serializable

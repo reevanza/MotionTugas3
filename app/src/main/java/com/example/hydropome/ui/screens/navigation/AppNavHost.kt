@@ -13,6 +13,8 @@ import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
 import com.example.hydropome.ui.screens.Register.Register
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi1
+import com.example.hydropome.ui.screens.personalisasi.Personalisasi2
+import com.example.hydropome.ui.screens.personalisasi.Personalisasi3
 import com.example.hydropome.ui.screens.splashscreen.SplashScreen
 
 @Composable
@@ -80,6 +82,18 @@ fun AppNavHost() {
 
         composable("Personalisasi1") {
             Personalisasi1(
+                navController = navController
+            )
+        }
+
+        composable("Personalisasi2") {
+            Personalisasi2(
+                navController = navController
+            )
+        }
+
+        composable("Personalisasi3") {
+            Personalisasi3(
                 navController = navController
             )
         }

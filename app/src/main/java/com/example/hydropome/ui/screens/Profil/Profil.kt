@@ -101,7 +101,7 @@ fun Profil(
                                     fontWeight = FontWeight.Bold,
                                     color = Color.White)
                                 Text(
-                                    text ="Melafesa@gm,ail.com",
+                                    text ="Melafesa@gmail.com",
                                     fontSize = 14.sp,
                                     color = Color.White.copy(alpha = 0.8f))
                             }
@@ -109,14 +109,18 @@ fun Profil(
                             Spacer(modifier = Modifier.width(40.dp))
 
                             Button(
-                                onClick = {  },
+                                onClick = {
+                                    navController.navigate("Editprofil")
+                                },
                                 shape = RoundedCornerShape(12.dp),
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF179778)),
                                 modifier = Modifier
                                     .height(42.dp)
                                     .width(102.dp)
                             ) {
-                                Text("Edit Profil", fontSize = 12.sp)
+                                Text(
+                                    text = "Edit Profil",
+                                    fontSize = 12.sp)
                             }
                     }
 
@@ -136,7 +140,10 @@ fun Profil(
                             )
                             .clip(RoundedCornerShape(20.dp))
                             .background(Color.White)
-                            .padding(24.dp)
+                            .padding(20.dp)
+                            .clickable{
+                                navController.navigate("StatusPesanan")
+                            }
                     ) {
                         Column(
                             horizontalAlignment = Alignment.Start

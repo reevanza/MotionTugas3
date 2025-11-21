@@ -649,8 +649,3 @@ fun Personalisasi2(navController: NavHostController){
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun Personalisasi2Preview() {
-    Personalisasi2(navController = rememberNavController())
-}

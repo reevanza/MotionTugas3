@@ -11,6 +11,8 @@ import com.example.hydropome.ui.screens.Onboard.Onboard1
 import com.example.hydropome.ui.screens.Onboard.Onboard2
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
+import com.example.hydropome.ui.screens.Profil.Editprofil
+import com.example.hydropome.ui.screens.Profil.StatusPesanan
 import com.example.hydropome.ui.screens.Register.Register
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi1
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi2
@@ -80,6 +82,18 @@ fun AppNavHost() {
             )
         }
 
+        composable("Editprofil") {
+            Editprofil(
+                navController = navController
+            )
+        }
+
+        composable("StatusPesanan") {
+            StatusPesanan(
+                navController = navController
+            )
+        }
+
         composable("Personalisasi1") {
             Personalisasi1(
                 navController = navController
@@ -106,3 +120,4 @@ fun AppNavHost() {
         }
     }
 }
+

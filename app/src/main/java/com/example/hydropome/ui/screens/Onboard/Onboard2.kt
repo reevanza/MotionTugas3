@@ -50,7 +50,7 @@ fun Onboard2(navController: NavHostController) {
 
             Button(
                 onClick = {
-                    navController.navigate("Register")
+                    navController.navigate("Login")
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEFF7F3)),
                 modifier = Modifier
@@ -100,7 +100,7 @@ fun Onboard2(navController: NavHostController) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.buletabu),
-                    contentDescription = "bulethabu",
+                    contentDescription = "buletabu",
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))

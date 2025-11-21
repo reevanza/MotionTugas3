@@ -1,54 +1,53 @@
-package com.example.hydropome.ui.screens
+package com.example.hydropome.ui.screens.pantautanaman
 
 import androidx.compose.foundation.Image
+import androidx.compose.material3.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.padding // <-- PASTIKAN IMPORT INI ADA
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.hydropome.R
+import com.example.hydropome.ui.screens.shape.BottomArcShape
+//import  androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.example.hydropome.ui.button.BackButton
-import com.example.hydropome.ui.common.shape.BottomArcShape
-import com.example.hydropome.ui.navigation.BottomNavBar
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.shadow
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PantauTanaman(navController: NavHostController){
-    val green = Color(0xFF179778)
-    
+fun PantauTanamanTask(navController: NavHostController) {
     Scaffold(
-        bottomBar = { BottomNavBar(navController = navController, pages = 1) }
-    ){ paddingValues ->
+
+    ) { innerPadding ->
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+                .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp)
         ) {
             Box(
                 modifier = Modifier
@@ -72,19 +71,29 @@ fun PantauTanaman(navController: NavHostController){
                         .padding(horizontal = 16.dp, vertical = 12.dp)
                 )
             }
+
             Spacer(modifier = Modifier.height(20.dp))
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ){
+                    .padding(bottom = 20.dp)
+            ) {
                 Text(
-                   text = "Selada Hidroponik",
-                    fontSize = 24.sp ,
+                    text = "Selada Hidroponik",
+                    fontSize = 24.sp,
                     fontWeight = FontWeight(700),
+                    modifier = Modifier
+                        .padding(horizontal = 25.dp)
                 )
+
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically){
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(horizontal = 25.dp)
+                ) {
                     Icon(
                         painter = painterResource(R.drawable.bulethijau),
                         contentDescription = "",
@@ -98,30 +107,61 @@ fun PantauTanaman(navController: NavHostController){
                         fontWeight = FontWeight(400),
                         color = Color(0xFF179778)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
                     Icon(
-                        painter = painterResource(R.drawable.plant_kecil),
+                        painter = painterResource(R.drawable.pohon_hijau),
                         contentDescription = "",
-                        modifier = Modifier.size(14.dp)
+                        tint = Color(0xFF179778),
+                        modifier = Modifier.size(16.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = "Hari Ke-1",
+                        text = "Hari ke-1",
                         fontSize = 16.sp,
                         fontWeight = FontWeight(400),
-
+//                        color = Color(0xFF98A0AA)
                     )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                val myShape = RoundedCornerShape(16.dp)
+                Box(
+                    modifier = Modifier
+                        .padding(horizontal = 25.dp)
+                        .width(335.dp)
+                        .height(112.dp)
+                        .shadow(elevation = 8.dp, shape = myShape)
+                        .background(Color.White, shape = myShape)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+//                        verticalAlignment = Alignment.CenterVertically
+                    
+                    ){
 
+                        Image(
+                            painter = painterResource(R.drawable.pohon),
+                            contentDescription = "",
+                            modifier = Modifier.size(300.dp)
+                                .align(Alignment.BottomEnd),
+                        )
+                        Text(
+                            text = "Progress menanam",
+
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                    }
                 }
             }
-
         }
     }
-
 }
+
 
 @Preview(showBackground = true)
 @Composable
-fun PantauPreview() {
-    PantauTanaman(navController = rememberNavController())
+fun PantauTanamanTaskPreview() {
+    PantauTanamanTask(navController = rememberNavController())
 }

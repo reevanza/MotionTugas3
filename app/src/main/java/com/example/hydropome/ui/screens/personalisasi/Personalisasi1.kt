@@ -503,9 +503,3 @@ fun Personalisasi1(navController: NavHostController){
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun Personalisasi1Preview() {
-    Personalisasi1(navController = rememberNavController())
-}

@@ -50,7 +50,7 @@ fun Onboard1(navController: NavHostController) {
 
             Button(
                 onClick = {
-                    navController.navigate("Register")
+                    navController.navigate("Login")
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEFF7F3)),
                 modifier = Modifier
@@ -137,10 +137,4 @@ fun Onboard1(navController: NavHostController) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Onboard1Preview() {
-    Onboard1(navController = rememberNavController())
 }

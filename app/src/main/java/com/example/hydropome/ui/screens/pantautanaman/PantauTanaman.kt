@@ -40,32 +40,29 @@ import com.example.hydropome.ui.screens.shape.BottomArcShape
 fun PantauTanaman(
     navController: NavController,
     innerPadding: PaddingValues = PaddingValues()
-){
-    val green = Color(0xFF179778)
-    
+) {
     Scaffold(
 
-    ){ paddingValues ->
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp)
         ) {
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color.White)
-                    .height(300.dp),
-
-                ) {
+                    .height(300.dp)
+            ) {
                 Image(
                     painter = painterResource(R.drawable.sayur),
                     contentDescription = "foto sayur",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(BottomArcShape()),
+                        .clip(BottomArcShape()), // Shape tetap jalan
                     contentScale = ContentScale.Crop
                 )
                 BackButton(
@@ -75,19 +72,23 @@ fun PantauTanaman(
                         .padding(horizontal = 16.dp, vertical = 12.dp)
                 )
             }
+
             Spacer(modifier = Modifier.height(20.dp))
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-            ){
+                    .padding(16.dp)
+            ) {
                 Text(
-                   text = "Selada Hidroponik",
-                    fontSize = 24.sp ,
+                    text = "Selada Hidroponik",
+                    fontSize = 24.sp,
                     fontWeight = FontWeight(700),
                 )
+
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically){
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(R.drawable.bulethijau),
                         contentDescription = "",
@@ -112,15 +113,11 @@ fun PantauTanaman(
                         text = "Hari Ke-1",
                         fontSize = 16.sp,
                         fontWeight = FontWeight(400),
-
                     )
-
                 }
             }
-
         }
     }
-
 }
 
 @Preview(showBackground = true)

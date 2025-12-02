@@ -14,6 +14,8 @@ import com.example.hydropome.ui.screens.Profil.Profil
 import com.example.hydropome.ui.screens.Profil.Editprofil
 import com.example.hydropome.ui.screens.Profil.StatusPesanan
 import com.example.hydropome.ui.screens.Register.Register
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanList
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanTask
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi1
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi2
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi3
@@ -25,10 +27,20 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = "SplashScreen"
+        startDestination = "Homepage"
     ){
         composable("Login") {
             Login(
+                navController = navController
+            )
+        }
+        composable("PantauTanamanTask") {
+            PantauTanamanTask(
+                navController = navController
+            )
+        }
+        composable("PantauTanamanList") {
+            PantauTanamanList(
                 navController = navController
             )
         }
@@ -59,7 +71,8 @@ fun AppNavHost() {
 
         composable("Homepage") {
             Homepage(
-                username = "",
+                navController = navController,
+                username = ""
             )
         }
 

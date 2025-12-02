@@ -76,7 +76,8 @@ fun MainScreen(
         when (selectedItem) {
             0 -> Homepage(
                 username = username,
-                innerPadding = innerPadding
+                innerPadding = innerPadding,
+                navController = navController,
             )
 
             1 -> PantauTanaman(

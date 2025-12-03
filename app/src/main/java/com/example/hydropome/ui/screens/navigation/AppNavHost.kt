@@ -12,6 +12,7 @@ import com.example.hydropome.ui.screens.Onboard.Onboard2
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
 import com.example.hydropome.ui.screens.Register.Register
+import com.example.hydropome.ui.screens.homepage.LamanTanaman
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanList
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanTask
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi1
@@ -76,6 +77,11 @@ fun AppNavHost() {
 
         composable("PantauTanaman") {
             PantauTanaman(
+                navController = navController
+            )
+        }
+        composable("LamanTanaman") {
+            LamanTanaman(
                 navController = navController
             )
         }

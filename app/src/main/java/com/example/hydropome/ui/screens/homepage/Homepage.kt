@@ -2,11 +2,9 @@ package com.example.hydropome.ui.screens.homepage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.* // Import all layout
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -27,8 +25,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.hydropome.R
-// Pastikan import BottomArcShape benar sesuai package kamu
+import com.example.hydropome.ui.dataclass.RecomCard
+import com.example.hydropome.ui.dataclass.getStatusColor
 import com.example.hydropome.ui.screens.shape.BottomArcShape
+
 
 @Composable
 fun Homepage(
@@ -44,7 +44,7 @@ fun Homepage(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            // --- BAGIAN HEADER (HIJAU) ---
+            //header hijau kurva
             item {
                 Box(
                     modifier = Modifier.fillMaxWidth()
@@ -214,15 +214,187 @@ fun Homepage(
                     )
                 }
             }
+            val listTanaman = listOf(
+                RecomCard(R.drawable.rekom1, "Mudah", "Selada Hidroponik", "3-5 Ming"),
+                RecomCard(R.drawable.rekom2, "Mudah", "Bayam Hidroponik", "3-4 Ming"),
+                RecomCard(R.drawable.rekom3, "Mudah", "Pakcoy Hidroponik", "4-5 Ming"),
+                RecomCard(R.drawable.rekom4, "Sedang", "Tomat Cherry", "8-10 Ming"),
+                RecomCard(R.drawable.rekom5, "Sedang", "Seledri Hidroponik", "5-6 Ming"),
+                RecomCard(R.drawable.rekom6, "Sulit", " Stroberi Hidroponik", "12-16 Ming")
+            )
+
 
             item{
-                LazyHorizontalGrid(rows = GridCells.Fixed(2),
-                    modifier = Modifier.padding(horizontal = 20.dp),
-                    verticalArrangement = Arrangement.spacedBy(20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(20.dp))
-                {
-                    items(6){ index->
-                        RekomendasiCard(index)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize() // Pastikan container ini punya tinggi
+                        .padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp) // Jarak antar baris ke bawah
+                ) {
+                    // 1. Pecah data menjadi paket isi 2 (Kiri & Kanan)
+                    listTanaman.chunked(2).forEach { rowItems ->
+
+                        // 2. Buat Row untuk menampung 2 item ke samping
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(20.dp) // Jarak kiri-kanan
+                        ) {
+                            // 3. Loop item di dalam baris ini
+                            for (item in rowItems) {
+                                val bannerColor = getStatusColor(item.status)
+
+                                // Box Card
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f) // PENTING: Pakai weight(1f) agar lebar dibagi 2 rata
+                                        .fillMaxHeight()
+                                        .width(157.dp)// Tinggi dinaikkan dikit biar muat (170 -> 180)
+                                        // Perbaikan urutan: Shadow dulu, baru Background
+                                        .padding(8.dp)
+                                        .shadow(elevation = 2.dp, shape = RoundedCornerShape(16.dp), ambientColor = Color.Black.copy(alpha = 0.1f))
+                                        .background(Color.White, shape = RoundedCornerShape(16.dp))
+                                        .clickable(onClick = { navController.navigate("LamanTanaman") })
+
+                                ) {
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(8.dp)
+                                        // align center dihapus karena default column sudah top-start (lebih rapi)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = item.image),
+                                            contentDescription = "Tanaman",
+                                            contentScale = ContentScale.Crop,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .clip(RoundedCornerShape(10.dp))
+                                                .height(115.dp) // Kecilin dikit (128 -> 115) biar teks muat
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = item.namaTanaman,
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight(700),
+                                            maxLines = 1 // Biar ga turun baris
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        // Spacer weight agar Row status selalu di dasar kartu
+                                        Spacer(modifier = Modifier.weight(1f))
+
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+                                            Icon(
+                                                painter = painterResource(R.drawable.bulethijau),
+                                                contentDescription = "status",
+                                                tint = bannerColor,
+                                                modifier = Modifier.size(8.dp)
+                                            )
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(
+                                                text = item.status,
+                                                color = bannerColor,
+                                                fontWeight = FontWeight(400),
+                                                fontSize = 11.sp
+                                            )
+                                            Spacer(modifier = Modifier.width(8.dp))
+                                            Icon(
+                                                painter = painterResource(R.drawable.clock),
+                                                contentDescription = "durasi",
+                                                tint = Color(0xFF98A0AA),
+                                                modifier = Modifier.size(12.dp)
+                                            )
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(
+                                                text = item.durasi,
+                                                color = Color(0xFF98A0AA),
+                                                fontWeight = FontWeight(400),
+                                                fontSize = 11.sp
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+
+                            // 4. Penyeimbang jika jumlah data ganjil (Cuma 1 di baris terakhir)
+                            if (rowItems.size == 1) {
+                                Spacer(modifier = Modifier.weight(1f))
+                            }
+                        }
+                    }
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(17.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween // Biar text ke kiri dan kanan mentok
+                ) {
+                    Text(
+                        text = "Starter  Kit Flash Sale \uD83D\uDD25",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight(700)
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically){
+                        Box(
+                            modifier = Modifier
+                                .size(22.dp)
+                                .background(Color(0xFF179778), RoundedCornerShape(6.dp)),
+                            contentAlignment = Alignment.Center
+                        ){
+                            Text(
+                                text = "01",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color.White
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Text(
+                            text = ":",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFF179778)
+                        )
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Box(
+                            modifier = Modifier
+                                .size(22.dp)
+                                .background(Color(0xFF179778), RoundedCornerShape(6.dp)),
+                            contentAlignment = Alignment.Center
+                        ){
+                            Text(
+                                text = "20",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color.White
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Text(
+                            text = ":",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFF179778)
+                        )
+                        Spacer(modifier = Modifier.width(2.dp))
+                        Box(
+                            modifier = Modifier
+                                .size(22.dp)
+                                .background(Color(0xFF179778), RoundedCornerShape(6.dp)),
+                            contentAlignment = Alignment.Center
+                        ){
+                            Text(
+                                text = "47",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color.White
+                            )
+                        }
                     }
                 }
             }
@@ -230,35 +402,7 @@ fun Homepage(
     }
 }
 
-@Composable
-fun RekomendasiCard(Index: Int) {
-    val tanamanPict =listOf(R.drawable.rekom1, R.drawable.rekom2, R.drawable.rekom3, R.drawable.rekom4, R.drawable.rekom5, R.drawable.rekom6)
-    val warna = listOf(Color(0xFF179778),Color(0xFF179778),Color(0xFF179778),Color(0xFFE56C3F),Color(0xFFE56C3F),Color(0xFFC10101))
-    val tingkatan = listOf("Mudah","Mudah","Mudah","Sedang","Sedang","Sulit")
 
-    Box(
-        modifier = Modifier
-            .width(158.dp)
-            .height(191.dp)
-            .background(Color.White, shape = RoundedCornerShape(16.dp))
-    ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-                .align(Alignment.Center)
-        ){
-            Image(
-                painter = painterResource(id = tanamanPict[Index]),
-                contentDescription = "Tanaman",
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-
-        }
-    }
-
-}
 @Preview(showBackground = true)
 @Composable
 fun HomepagePreview() {

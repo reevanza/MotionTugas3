@@ -11,6 +11,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,8 +27,18 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.hydropome.R
 import com.example.hydropome.ui.dataclass.RecomCard
+import com.example.hydropome.ui.dataclass.StarterKit
 import com.example.hydropome.ui.dataclass.getStatusColor
 import com.example.hydropome.ui.screens.shape.BottomArcShape
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextDecoration
 
 
 @Composable
@@ -36,6 +47,19 @@ fun Homepage(
     username: String,
     innerPadding: PaddingValues = PaddingValues()
 ) {
+    //-- DATA DUMMY UNTUK CARD REKOMENDASI --
+    val listTanaman = listOf(
+        RecomCard(R.drawable.rekom1, "Mudah", "Selada Hidroponik", "3-5 Ming"),
+        RecomCard(R.drawable.rekom2, "Mudah", "Bayam Hidroponik", "3-4 Ming"),
+        RecomCard(R.drawable.rekom3, "Mudah", "Pakcoy Hidroponik", "4-5 Ming"),
+        RecomCard(R.drawable.rekom4, "Sedang", "Tomat Cherry", "8-10 Ming"),
+        RecomCard(R.drawable.rekom5, "Sedang", "Seledri Hidroponik", "5-6 Ming"),
+        RecomCard(R.drawable.rekom6, "Sulit", " Stroberi Hidroponik", "12-16 Ming")
+    )
+    var searchQuery by remember { mutableStateOf("") }
+    val filteredList = listTanaman.filter { item ->
+        item.namaTanaman.contains(searchQuery, ignoreCase = true)
+    }
     Scaffold(
         modifier = Modifier.padding(innerPadding)
     ) { paddingValues ->
@@ -44,7 +68,7 @@ fun Homepage(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            //header hijau kurva
+            //-- HEADER--
             item {
                 Box(
                     modifier = Modifier.fillMaxWidth()
@@ -89,7 +113,7 @@ fun Homepage(
                                     fontWeight = FontWeight.SemiBold
                                 )
                             }
-
+                            // AVATAR
                             Box(
                                 modifier = Modifier
                                     .size(50.dp)
@@ -108,7 +132,7 @@ fun Homepage(
                             }
                         }
                         Spacer(modifier = Modifier.height(16.dp))
-                        //kotak sebelum search bar
+                        // -- PROGRESS BOX --
                         Box(
                             modifier = Modifier
                                 .padding(horizontal = 25.dp)
@@ -158,40 +182,48 @@ fun Homepage(
 
 
 
-            // --- BAGIAN SEARCH ---
+            // ---  SEARCH BAR ---
             item {
                 Spacer(modifier = Modifier.height(20.dp))
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .height(48.dp)
+                        .padding(horizontal = 20.dp) // Margin kiri-kanan dari layar
+                        .shadow(elevation = 7.dp, shape = RoundedCornerShape(12.dp))
                         .background(Color(0xFFF4F5F7), shape = RoundedCornerShape(12.dp))
-                        .padding(horizontal = 14.dp, vertical = 16.dp),
-                    contentAlignment = Alignment.Center
+                        .height(50.dp),
+//                        .align(Alignment.BottomCenter), // Posisi di Header
+                    contentAlignment = Alignment.CenterStart
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .align(Alignment.CenterStart),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.searchicon), // Pastikan icon ada
-                            contentDescription = "Search icon",
-                            tint = Color(0xFF98A0AA)
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = "Cari tanaman...",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF98A0AA)
-                        )
-                    }
+                    TextField(
+                        value = searchQuery,
+                        onValueChange = {newText -> searchQuery = newText},
+                        placeholder = {
+                            Text(
+                                text = "Cari Tanaman",
+                                fontSize = 14.sp,
+                                color = Color(0xFF98A0AA)
+                            )
+                        },
+                        leadingIcon = {
+                            Icon(
+                                painter = painterResource(id = R.drawable.searchicon), // Pastikan icon ada
+                                contentDescription = "Search icon",
+                                tint = Color(0xFF98A0AA)
+                            )
+                        },
+                        singleLine = true,
+                        colors = TextFieldDefaults.colors( // Hilangkan warna bawaan TextField
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent,
+                            disabledContainerColor = Color.Transparent,
+                            focusedIndicatorColor = Color.Transparent, // Hilangkan garis bawah
+                            unfocusedIndicatorColor = Color.Transparent,
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
             }
-            //rekomendasi untukmu
+            //-- REKOMENDASI UNTUKMU & LIHAT SEMUA--
             item {
                 Spacer(modifier = Modifier.height(17.dp))
                 Row(
@@ -214,32 +246,25 @@ fun Homepage(
                     )
                 }
             }
-            val listTanaman = listOf(
-                RecomCard(R.drawable.rekom1, "Mudah", "Selada Hidroponik", "3-5 Ming"),
-                RecomCard(R.drawable.rekom2, "Mudah", "Bayam Hidroponik", "3-4 Ming"),
-                RecomCard(R.drawable.rekom3, "Mudah", "Pakcoy Hidroponik", "4-5 Ming"),
-                RecomCard(R.drawable.rekom4, "Sedang", "Tomat Cherry", "8-10 Ming"),
-                RecomCard(R.drawable.rekom5, "Sedang", "Seledri Hidroponik", "5-6 Ming"),
-                RecomCard(R.drawable.rekom6, "Sulit", " Stroberi Hidroponik", "12-16 Ming")
-            )
 
 
+
+            //-- CARD TANAMAN REKOMENDASI --
             item{
                 Column(
                     modifier = Modifier
-                        .fillMaxSize() // Pastikan container ini punya tinggi
+                        .fillMaxSize()
                         .padding(20.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp) // Jarak antar baris ke bawah
                 ) {
-                    // 1. Pecah data menjadi paket isi 2 (Kiri & Kanan)
-                    listTanaman.chunked(2).forEach { rowItems ->
+                    //  isi 2 (Kiri & Kanan)
+                    filteredList.chunked(2).forEach { rowItems ->
 
-                        // 2. Buat Row untuk menampung 2 item ke samping
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(20.dp) // Jarak kiri-kanan
                         ) {
-                            // 3. Loop item di dalam baris ini
+
                             for (item in rowItems) {
                                 val bannerColor = getStatusColor(item.status)
 
@@ -260,7 +285,7 @@ fun Homepage(
                                         modifier = Modifier
                                             .fillMaxSize()
                                             .padding(8.dp)
-                                        // align center dihapus karena default column sudah top-start (lebih rapi)
+
                                     ) {
                                         Image(
                                             painter = painterResource(id = item.image),
@@ -269,7 +294,7 @@ fun Homepage(
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .clip(RoundedCornerShape(10.dp))
-                                                .height(115.dp) // Kecilin dikit (128 -> 115) biar teks muat
+                                                .height(115.dp)
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
@@ -315,7 +340,7 @@ fun Homepage(
                                 }
                             }
 
-                            // 4. Penyeimbang jika jumlah data ganjil (Cuma 1 di baris terakhir)
+                            // Penyeimbang jika jumlah data ganjil (Cuma 1 di baris terakhir)
                             if (rowItems.size == 1) {
                                 Spacer(modifier = Modifier.weight(1f))
                             }
@@ -324,6 +349,7 @@ fun Homepage(
                 }
             }
 
+            // -- FLASHSALE & COUNTDOWN --
             item {
                 Spacer(modifier = Modifier.height(17.dp))
                 Row(
@@ -394,6 +420,110 @@ fun Homepage(
                                 fontWeight = FontWeight(400),
                                 color = Color.White
                             )
+                        }
+                    }
+                }
+            }
+            val listStarterKitSale = listOf(
+                StarterKit("Paket Pipa NFT","Rp 150.000", "Rp 125.000", R.drawable.paketpipanft),
+                StarterKit("Paket Lengkap","Rp 75.000", "Rp 55.000", R.drawable.paketlengkap),
+                StarterKit("Paket Pipa NFT","Rp 150.000", "Rp 125.000", R.drawable.paketpipanft),
+                StarterKit("Paket Lengkap","Rp 75.000", "Rp 55.000", R.drawable.paketlengkap)
+
+            )
+
+            item{
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize() // Pastikan container ini punya tinggi
+                        .padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp) // Jarak antar baris ke bawah
+                ) {
+                    // 1. Pecah data menjadi paket isi 2 (Kiri & Kanan)
+                    listStarterKitSale.chunked(2).forEach { rowItems ->
+
+                        // 2. Buat Row untuk menampung 2 item ke samping
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(20.dp) // Jarak kiri-kanan
+                        ) {
+                            // 3. Loop item di dalam baris ini
+                            for (item in rowItems) {
+
+
+                                // Box Card
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f) // PENTING: Pakai weight(1f) agar lebar dibagi 2 rata
+                                        .fillMaxHeight()
+                                        .width(157.dp)// Tinggi dinaikkan dikit biar muat (170 -> 180)
+                                        // Perbaikan urutan: Shadow dulu, baru Background
+                                        .padding(8.dp)
+                                        .shadow(elevation = 2.dp, shape = RoundedCornerShape(16.dp), ambientColor = Color.Black.copy(alpha = 0.1f))
+                                        .background(Color.White, shape = RoundedCornerShape(16.dp))
+                                        .clickable(onClick = { navController.navigate("LamanTanaman") })
+
+                                ) {
+                                    Column(
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(8.dp)
+
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = item.image),
+                                            contentDescription = "gambar starter kit",
+                                            contentScale = ContentScale.Crop,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .clip(RoundedCornerShape(10.dp))
+                                                .height(115.dp)
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        Text(
+                                            text = "Starter Kit",
+                                            fontSize = 12.sp,
+                                            fontWeight = FontWeight(400),
+                                            color = Color(0xFF757575),
+                                            maxLines = 1 // Biar ga turun baris
+                                        )
+                                        Spacer(modifier = Modifier.height(4.dp))
+                                        Text(
+                                            text = item.namaStraterKit,
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight(700),
+                                            maxLines = 1 // Biar ga turun baris
+                                        )
+                                        Spacer(modifier = Modifier.height(8.dp))
+                                        // Spacer weight agar Row status selalu di dasar kartu
+                                        Spacer(modifier = Modifier.weight(1f))
+
+                                        Row(verticalAlignment = Alignment.CenterVertically) {
+
+                                            Text(
+                                                text = item.hargaDiskon,
+                                                color = Color(0xFF179778),
+                                                fontWeight = FontWeight(700),
+                                                fontSize = 14.sp
+                                            )
+
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text(
+                                                text = item.hargaAwal,
+                                                color = Color(0xFF757575),
+                                                fontWeight = FontWeight(400),
+                                                fontSize = 11.sp,
+                                                style = TextStyle(textDecoration = TextDecoration.LineThrough)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Penyeimbang jika jumlah data ganjil (Cuma 1 di baris terakhir)
+                            if (rowItems.size == 1) {
+                                Spacer(modifier = Modifier.weight(1f))
+                            }
                         }
                     }
                 }

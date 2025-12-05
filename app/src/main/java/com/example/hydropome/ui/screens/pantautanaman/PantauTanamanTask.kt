@@ -32,10 +32,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.hydropome.R
 import com.example.hydropome.ui.button.BackButton
 import com.example.hydropome.ui.screens.shape.BottomArcShape
+import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PantauTanamanTask(navController: NavHostController) {
+fun PantauTanamanTask(navController: NavController) {
     // State untuk UI
     var selectedIndex by remember { mutableIntStateOf(0) } // Default hari ke-1
     var selectedBox by remember { mutableStateOf(false) } // State checkbox sederhana
@@ -55,7 +56,9 @@ fun PantauTanamanTask(navController: NavHostController) {
                 navigationIcon = {
                     BackButton(
                         modifier = Modifier
-                            .padding(start = 8.dp)
+                            .clickable(onClick = { navController.popBackStack() })
+                            .padding(start = 8.dp),
+
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -375,7 +378,9 @@ fun PantauTanamanTask(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(38.dp))
 
                 Button(
-                    onClick = { /* Aksi Klik */ },
+                    onClick = {
+                        navController.navigate("LamanTanaman")
+                    },
 
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFFE8F5F2), // Background
@@ -395,6 +400,7 @@ fun PantauTanamanTask(navController: NavHostController) {
                         text = "Lihat Panduan",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.SemiBold,
+
                     )
                 }
 

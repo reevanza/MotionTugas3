@@ -9,7 +9,6 @@ import com.example.hydropome.ui.screens.login.Login
 import com.example.hydropome.ui.screens.marketplace.MarketPlace
 import com.example.hydropome.ui.screens.Onboard.Onboard1
 import com.example.hydropome.ui.screens.Onboard.Onboard2
-import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
 import com.example.hydropome.ui.screens.Register.Register
 import com.example.hydropome.ui.screens.homepage.LamanTanaman
@@ -26,7 +25,7 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = "Homepage"
+        startDestination = "Main"
     ){
         composable("Login") {
             Login(
@@ -75,11 +74,7 @@ fun AppNavHost() {
             )
         }
 
-        composable("PantauTanaman") {
-            PantauTanaman(
-                navController = navController
-            )
-        }
+
         composable("LamanTanaman") {
             LamanTanaman(
                 navController = navController

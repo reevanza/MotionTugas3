@@ -68,7 +68,7 @@ fun LamanTanaman(navController: NavHostController){
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(BottomArcShape())
-                        .clickable(onClick = { navController.navigate("Homepage") }),
+                        .clickable(onClick = { navController.popBackStack() }),
                     contentScale = ContentScale.Crop
                 )
                 BackButton(

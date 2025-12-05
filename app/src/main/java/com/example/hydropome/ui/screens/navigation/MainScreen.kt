@@ -22,8 +22,10 @@ import androidx.navigation.NavController
 import com.example.hydropome.R
 import com.example.hydropome.ui.screens.homepage.Homepage
 import com.example.hydropome.ui.screens.marketplace.MarketPlace
-import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
+
 import com.example.hydropome.ui.screens.Profil.Profil
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanList
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanTask
 
 @Composable
 fun MainScreen(
@@ -80,7 +82,7 @@ fun MainScreen(
                 navController = navController,
             )
 
-            1 -> PantauTanaman(
+            1 -> PantauTanamanList(
                 navController = navController,
                 innerPadding = innerPadding
             )

@@ -40,7 +40,7 @@ fun PantauTanamanTask(navController: NavController) {
     // State untuk UI
     var selectedIndex by remember { mutableIntStateOf(0) } // Default hari ke-1
     var selectedBox by remember { mutableStateOf(false) } // State checkbox sederhana
-
+    var showPopUp by remember {mutableStateOf(false)}
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -67,6 +67,22 @@ fun PantauTanamanTask(navController: NavController) {
             )
         }
     ) { innerPadding ->
+        //logic pop up
+        if(showPopUp){
+            androidx.compose.ui.window.Dialog(
+                onDismissRequest = {showPopUp = false} //kalo klik luar popup, popup ilang
+            ) {
+                PopupSelesai(
+                    onDismiss = {
+                        showPopUp = false
+                    },
+                    onNext = {
+                        showPopUp = false //belum diubah logic untuk ke next hari
+                    }
+
+                )
+            }
+        }
         Column(
             modifier = Modifier
                 .padding(innerPadding)
@@ -406,7 +422,7 @@ fun PantauTanamanTask(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(
-                    onClick = { /* Aksi Klik */ },
+                    onClick = { showPopUp = true },
 
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF179778), // Background

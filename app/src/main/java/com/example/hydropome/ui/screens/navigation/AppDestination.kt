@@ -29,6 +29,12 @@ object LamanTanaman
 object Profil
 
 @Serializable
+object Editprofil
+
+@Serializable
+object Statuspesanan
+
+@Serializable
 object SplashScreen
 
 @Serializable

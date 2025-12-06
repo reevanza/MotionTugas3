@@ -3,6 +3,7 @@ package com.example.hydropome.ui.screens.homepage
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -66,7 +67,8 @@ fun LamanTanaman(navController: NavHostController){
                     contentDescription = "foto sayur",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(BottomArcShape()),
+                        .clip(BottomArcShape())
+                        .clickable(onClick = { navController.popBackStack() }),
                     contentScale = ContentScale.Crop
                 )
                 BackButton(
@@ -375,7 +377,9 @@ fun LamanTanaman(navController: NavHostController){
                 Spacer(modifier = Modifier.height(57.dp))
 
                 MulaiTanamButton(
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .clickable(onClick = { navController.navigate("Main?index=1")})
                 )
             }
         }

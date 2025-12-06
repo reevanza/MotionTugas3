@@ -1,19 +1,21 @@
 package com.example.hydropome.ui.screens.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.hydropome.ui.screens.homepage.Homepage
 import com.example.hydropome.ui.screens.login.Login
 import com.example.hydropome.ui.screens.marketplace.MarketPlace
 import com.example.hydropome.ui.screens.Onboard.Onboard1
 import com.example.hydropome.ui.screens.Onboard.Onboard2
-import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
 import com.example.hydropome.ui.screens.Profil.Profil
 import com.example.hydropome.ui.screens.Profil.Editprofil
 import com.example.hydropome.ui.screens.Profil.StatusPesanan
 import com.example.hydropome.ui.screens.Register.Register
+import com.example.hydropome.ui.screens.homepage.LamanTanaman
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanList
 import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanTask
 import com.example.hydropome.ui.screens.personalisasi.Personalisasi1
@@ -27,7 +29,7 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = "Homepage"
+        startDestination = "Main"
     ){
         composable("Login") {
             Login(
@@ -76,8 +78,9 @@ fun AppNavHost() {
             )
         }
 
-        composable("PantauTanaman") {
-            PantauTanaman(
+
+        composable("LamanTanaman") {
+            LamanTanaman(
                 navController = navController
             )
         }
@@ -125,10 +128,17 @@ fun AppNavHost() {
             )
         }
 
-        composable("Main") {
+        composable("Main?index={index}",
+            arguments = listOf(
+                navArgument("index"){
+                    type = NavType.IntType
+                             defaultValue = 0})
+        ) { backStackEntry ->
+            val index = backStackEntry.arguments?.getInt("index") ?: 0 //ambil angka yg diminta
             MainScreen(
                 username = "",
-                navController = navController
+                navController = navController,
+                initialIndex = index
             )
         }
     }

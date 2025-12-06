@@ -22,18 +22,21 @@ import androidx.navigation.NavController
 import com.example.hydropome.R
 import com.example.hydropome.ui.screens.homepage.Homepage
 import com.example.hydropome.ui.screens.marketplace.MarketPlace
-import com.example.hydropome.ui.screens.pantautanaman.PantauTanaman
+
 import com.example.hydropome.ui.screens.Profil.Profil
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanList
+import com.example.hydropome.ui.screens.pantautanaman.PantauTanamanTask
 
 @Composable
 fun MainScreen(
     username: String,
-    navController: NavController
+    navController: NavController,
+    initialIndex : Int = 0
 ){
     val items = listOf("Beranda","Pantau Tanaman", "Marketplace", "Profil")
     val selectedIcons = listOf(R.drawable.home_hijau, R.drawable.pohon_hijau, R.drawable.bag_hijau, R.drawable.akunhijau)
     val unselectedIcons = listOf(R.drawable.home_abu, R.drawable.pohon_abu, R.drawable.bag_abu, R.drawable.akunabu)
-    var selectedItem by remember { mutableStateOf(0) }
+    var selectedItem by remember { mutableStateOf(initialIndex) } //ubah biar di navigasi bisa ke index tertentu
 
     Scaffold (
         bottomBar = {
@@ -80,7 +83,7 @@ fun MainScreen(
                 navController = navController,
             )
 
-            1 -> PantauTanaman(
+            1 -> PantauTanamanList(
                 navController = navController,
                 innerPadding = innerPadding
             )

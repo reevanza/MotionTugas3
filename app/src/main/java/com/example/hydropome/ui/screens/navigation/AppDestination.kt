@@ -23,6 +23,9 @@ object MarketPlace
 object PantauTanaman
 
 @Serializable
+object LamanTanaman
+
+@Serializable
 object Profil
 
 @Serializable

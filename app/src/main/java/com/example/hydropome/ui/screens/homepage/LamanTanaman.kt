@@ -377,7 +377,9 @@ fun LamanTanaman(navController: NavHostController){
                 Spacer(modifier = Modifier.height(57.dp))
 
                 MulaiTanamButton(
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .clickable(onClick = { navController.navigate("Main?index=1")})
                 )
             }
         }
